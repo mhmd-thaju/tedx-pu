@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:700");
+
+/* Basic Styling */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #000 !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+.navbar-nav {
+  margin-left: auto;
+  gap: 1rem;
+}
+
+.nav-link {
+  color: #fff !important;
+  font-size: 1rem;
+  position: relative;
+  padding: 0.5rem 0.75rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link.active {
+  color: red !important;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  width: 0%;
+  height: 2px;
+  background: red;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  color: red !important;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Navbar toggler styling */
+.navbar-toggler {
+  border-color: red;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='red' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Responsive Tweaks */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    position: fixed;
+    left: 0;
+    top: 58px;
+    width: 250px; /* Restrict width */
+    height: 100vh; /* Full screen height */
+    background: transparent; /* Make background transparent */
+    backdrop-filter: blur(10px); /* Optional: Adds blur effect */
+    padding: 1rem;
+    z-index: 999; /* Ensures it stays above other content */
+  }
+
+  .navbar-nav {
+    flex-direction: column; /* Stack items vertically */
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    padding: 0.5rem;
+  }
+
+  .navb-items {
+    margin-top: 1rem;
+  }
+
+  
+}
+
+
