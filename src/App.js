@@ -1,42 +1,49 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import cover_img from './Cover.jpg';
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from "./pages/Home.js";
-import About from "./pages/About.js";
+import Home from "./pages/Home.jsx";
+import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.js";
 import Sponsors from "./pages/Sponsors.js";
-import Speakers from "./pages/Speakers.js";
+import Speakers from "./pages/Speakers.jsx";
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Navbar />
-        <div className='Cover' style={{
-          backgroundImage: `url(${cover_img})`,
-          backgroundSize: 'cover',
-          height: '100vh'
-        }} />
-
-        {/* Routes Section */}
-        <div className="content">
-          <Routes>
-            <Route path="/Home" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/speakers" element={<Speakers />} />
-            <Route path="/sponsors" element={<Sponsors/>} />
-          </Routes>
-        </div>
-
-        <Footer />
-      </div>
+      <MainLayout />
     </Router>
+  );
+}
+
+// 👇 Handles showing Home only on "/" or "/home"
+function MainLayout() {
+  const location = useLocation();
+  const showHome = location.pathname === '/' || location.pathname === '/home';
+
+  return (
+    <div className="App d-flex flex-column min-vh-100" style={{ backgroundColor: "#000" }}>
+      <Navbar />
+
+      {/* Show Home only for "/" or "/home" */}
+      {showHome && <Home />}
+
+      {/* Routes Section */}
+      <div className="flex-grow-1">
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/speakers" element={<Speakers />} />
+          <Route path="/sponsors" element={<Sponsors />} />
+        </Routes>
+      </div>
+
+      <Footer />
+    </div>
   );
 }
 
