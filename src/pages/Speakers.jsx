@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Speakers.css";
-import speakerImage from "../assets/speaker1.png"; // using same image
+import speakerImage from "../assets/speaker1.png"; 
 
 const speakersData = [
   {
