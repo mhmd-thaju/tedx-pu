@@ -1,0 +1,111 @@
+.contact-page {
+  background-color: black;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.contact-banner img {
+  width: 100%;
+  height: 70vh;
+  object-fit: cover;
+}
+
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 40px;
+  gap: 40px;
+}
+
+.contact-left {
+  flex: 1;
+  min-width: 300px;
+}
+
+.contact-info h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.contact-info span {
+  color: red;
+  font-weight: bold;
+}
+
+.contact-info p {
+  font-size: 1rem;
+  color: #ddd;
+  margin-bottom: 20px;
+}
+
+.map-container p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 300px;
+  border: none;
+  border-radius: 10px;
+}
+
+/* Right Column */
+.contact-right {
+  flex: 1;
+  min-width: 300px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid white;
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.contact-form label {
+  font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+  resize: none;
+}
+
+.contact-form textarea {
+  height: 150px;
+}
+
+.contact-form .whatsapp {
+  color: red;
+  font-size: 0.9rem;
+}
+
+.contact-form button {
+  align-self: flex-end;
+  background-color: #e50914;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.contact-footer {
+  text-align: center;
+  margin-top: 30px;
+  padding: 15px;
+  border: 1px solid white;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
