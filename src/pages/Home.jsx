@@ -1,12 +1,10 @@
-
 import cover_img from '../assets/Covero.jpg'
+import Tabs from "../components/Tabs";
 function Home() {
   return (
-     <div className='Cover' style={{
-          backgroundImage: `url(${cover_img})`,
-          backgroundSize: 'cover',
-          height: '100vh'
-        }} />
+     <div style={{paddingTop : '90px'}}>
+      <div><Tabs /></div>
+     </div>
     
   )
 }
