@@ -29,7 +29,7 @@ function MainLayout() {
       <Navbar />
 
       {/* Show Home only for "/" or "/home" */}
-      {showHome && <Home />}
+      {/*showHome && <Home />*/}
 
       {/* Routes Section */}
       <div className="flex-grow-1">
