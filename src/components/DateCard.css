@@ -1,0 +1,18 @@
+.date-card-2 {
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+  border-left: 6px solid red;
+  font-family: sans-serif;
+  width: fit-content;
+}
+.date-top {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+.date-bottom {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 6px;
+}

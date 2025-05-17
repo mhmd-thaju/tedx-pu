@@ -1,0 +1,20 @@
+
+
+.date-sec{
+    display: flex;
+    flex-direction: row;
+    padding: 40px;
+    justify-content: space-evenly;
+}
+.date-text{
+    flex-direction: column;
+}
+
+.text{
+    color: red;
+    font-size: xx-large;
+}
+
+.text b{
+    color: white;
+}
