@@ -1,13 +1,20 @@
 import React from "react";
 import "./Contact.css";
-import banner from "../assets/contacts_first.png"; // Top image from assets
+import banner from "../assets/contacts_first.png";
+import tdtxt from "../assets/tedx_text.jpg";
+import auro from "../assets/Auroville.png" // Top image from assets
 
 const Contact = () => {
   return (
     <div className="contact-page">
       {/* Top banner image */}
       <div className="contact-banner">
-        <img src={banner} alt="Contact Banner" />
+        <div className="banner-image">
+          <img src={tdtxt} alt="Contact Banner" />
+          <img src={auro} alt="Contact Banner" />
+        </div>
+        
+
       </div>
 
       {/* Contact Section */}
@@ -21,10 +28,10 @@ const Contact = () => {
             <p>Fill out our form, and we’ll try to get back to you within 2 hours.</p>
           </div>
           <div className="map-container">
-            <p>Farook College, Calicut</p>
+            <p>Pondicherry University, Kalapet</p>
             <iframe
               title="Google Map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.014663621716!2d75.8557521758793!3d11.22174895048662!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba65b8579b7a50f%3A0x5a59df2ec23e9c84!2sFarook%20College!5e0!3m2!1sen!2sin!4v1715765108965!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.185192982051!2d79.8542712!3d12.0182619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a536176a1e57959%3A0xf9c2bcf93bd35eba!2sPondicherry%20University!5e0!3m2!1sen!2sin!4v1716140341714!5m2!1sen!2sin"
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
