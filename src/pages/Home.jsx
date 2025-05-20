@@ -5,6 +5,7 @@ import "./Home.css";
 
 function Home() {
   const [showAnimation, setShowAnimation] = useState(false);
+  const [readyToShowContent, setReadyToShowContent] = useState(false);
 
   useEffect(() => {
     const hasShown = sessionStorage.getItem('hasShownAnimation');
@@ -15,9 +16,13 @@ function Home() {
 
       const timer = setTimeout(() => {
         setShowAnimation(false);
-      }, 5000); // animation lasts 5 seconds
+        setReadyToShowContent(true);
+      }, 5000); // 5s animation
 
       return () => clearTimeout(timer);
+    } else {
+      // Animation already shown: show content immediately
+      setReadyToShowContent(true);
     }
   }, []);
 
@@ -29,7 +34,7 @@ function Home() {
         </div>
       )}
 
-      {!showAnimation && (
+      {readyToShowContent && (
         <div className='main-con' style={{ paddingTop: '90px' }}>
           <div className="date-sec">
             <div className="date-text">
