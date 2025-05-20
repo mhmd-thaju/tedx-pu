@@ -58,9 +58,7 @@ const Contact = () => {
       </div>
 
       {/* Footer contact */}
-      <div className="contact-footer">
-        contacttedxfarook@gmail.com
-      </div>
+    
     </div>
   );
 };
