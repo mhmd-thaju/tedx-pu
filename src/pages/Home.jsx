@@ -38,7 +38,7 @@ function Home() {
         <div className='main-con' style={{ paddingTop: '90px' }}>
           <div className="date-sec">
             <div className="date-text">
-              <span className='text'>TEDx Pondicherry University <b>Season 1</b></span>
+              <span className='text'>TEDx Pondicherry University </span>
             </div>
             <div className="datec-main" style={{ display: 'flex', gap: '20px' }}>
               <DateCard date="September 23,2025 " />

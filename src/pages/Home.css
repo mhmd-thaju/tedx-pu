@@ -9,6 +9,7 @@
 
 .date-text {
     flex-direction: column;
+    padding-top: 3vh;
 }
 .datec-main{
     height: 15vh;
