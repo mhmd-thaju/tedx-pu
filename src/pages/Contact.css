@@ -67,6 +67,9 @@ body{
 .contact-right {
   flex: 1;
   min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .contact-form {
@@ -121,6 +124,16 @@ body{
   font-weight: bold;
   font-size: 1.1rem;
 }
+
+.mail-id{
+  padding-top: 12px;
+  border: 1px solid white;
+  border-radius: 20px;
+}
+.mail-id p{
+  font-size: large;
+}
+
 
 @media (max-width: 768px) {
   .banner-image img {

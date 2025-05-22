@@ -3,8 +3,8 @@
   display: flex;
   flex-direction:column ;
   position: relative;
-  width: 70%;
-  left: 15%;
+  width: 92%;
+  left: 4%;
   background-color: rgb(52, 51, 51);
   word-break: break-all;
   border: 3px solid rgb(239, 232, 232);
@@ -18,6 +18,7 @@
 
 .tabblock{
   display: flex;
+  flex-wrap: nowrap;
 }
 .tabs{
   padding :15px;
@@ -30,6 +31,10 @@
   position: relative;
   outline: none;
   border: none;
+  white-space: nowrap; /* Ensures text doesn't break */
+  overflow: hidden; /* Prevents overflow issues */
+  text-overflow: ellipsis; /* Adds "..." if text overflows */
+   
 }
 .tabs:not(:last-child){
   border-right: 1px solid azure;

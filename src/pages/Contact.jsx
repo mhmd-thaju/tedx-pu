@@ -1,16 +1,42 @@
 import React from "react";
 import "./Contact.css";
 import banner from "../assets/contacts_first.png";
-import tdtxt from "../assets/tedx_text.jpg";
-import auro from "../assets/Auroville.png" // Top image from assets
+//import tdtxt from "../assets/tedx_text.jpg";
+import txt1 from "../assets/thinkers1.png";
+import auro from "../assets/Auroville.png"; // Top image from assets
 
 const Contact = () => {
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    formData.append("access_key", "1bfcdfcd-8d0c-40fe-87eb-5e44c4873abc");
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: json
+    }).then((res) => res.json());
+
+    if (res.success) {
+      console.log("Success", res);
+      alert("Submitted successfully" );
+    }
+  };
+
+
   return (
     <div className="contact-page">
       {/* Top banner image */}
       <div className="contact-banner">
         <div className="banner-image">
-          <img src={tdtxt} alt="Contact Banner" />
+          <img src={txt1} alt="Contact Banner" />
           <img src={auro} alt="Contact Banner" />
         </div>
         
@@ -41,19 +67,22 @@ const Contact = () => {
 
         {/* Right: Form */}
         <div className="contact-right">
-          <form className="contact-form">
+          <form className="contact-form" onSubmit={onSubmit}>
             <label>Name</label>
-            <input type="text" placeholder="Enter your name" required />
+            <input type="text"  name="name" placeholder="Enter your name" required />
 
             <label>E-Mail</label>
-            <input type="email" placeholder="Enter your email" required />
+            <input type="email" name="mail" placeholder="Enter your email" required />
 
             <label>Message</label>
-            <textarea placeholder="Enter your message" required></textarea>
+            <textarea placeholder="Enter your message" name="message" required></textarea>
 
             <p className="whatsapp">Join us on WhatsApp</p>
             <button type="submit">Send</button>
           </form>
+          <div className="mail-id">
+            <p><b>tedxpondicherryuniversity@gmail.com</b></p>
+          </div>
         </div>
       </div>
 
