@@ -44,7 +44,7 @@ function Home() {
               <DateCard date="September 23,2025 " />
             </div>
           </div>
-          <div><Tabs /></div>
+          <div className='Tabs'><Tabs /></div>
         </div>
       )}
     </>

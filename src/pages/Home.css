@@ -4,10 +4,14 @@
     flex-direction: row;
     padding: 40px;
     justify-content: space-evenly;
+    height: 100vh;
 }
 
 .date-text {
     flex-direction: column;
+}
+.datec-main{
+    height: 15vh;
 }
 
 .text {
@@ -17,6 +21,10 @@
 
 .text b {
     color: white;
+}
+
+.Tabs{
+    height: 100vh;
 }
 
 /* Landing Animation */
