@@ -1,0 +1,145 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-box {
+  background-color: black;
+  border: 1px solid red;
+  padding: 40px;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px red;
+  animation: scaleIn 0.4s ease;
+  position: relative;
+  color: white;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 2rem;
+  color: red;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+}
+
+p {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+hr {
+  border-color: red;
+  margin-bottom: 25px;
+}
+
+.form-content label {
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.phone-input {
+  display: flex;
+  gap: 10px;
+}
+
+.phone-input select,
+.phone-input input {
+  flex: 1;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #222;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: red;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+  .modal-box {
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .modal-close {
+    font-size: 1.6rem;
+    top: 10px;
+    right: 15px;
+  }
+
+  input,
+  select {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .submit-btn {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 0.85rem;
+  }
+}

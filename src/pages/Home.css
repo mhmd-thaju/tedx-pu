@@ -1,4 +1,120 @@
-/* Existing styles */
+/* === Booking Section === */
+.full-page {
+    height: 100vh;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+.booking-head {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.highlight-red {
+    color: red;
+}
+
+.booking-desc {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 700px;
+}
+
+.book-button {
+    background-color: red;
+    color: white;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.book-button:hover {
+    background-color: darkred;
+}
+
+/* === Modal === */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.modal-content {
+    background: black;
+    color: white;
+    border: 1px solid red;
+    border-radius: 10px;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+.modal-content h2 {
+    margin-bottom: 10px;
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+}
+
+.modal-content hr {
+    border-color: red;
+    margin-bottom: 20px;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content input,
+.modal-content select {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+}
+
+.phone-input {
+    display: flex;
+    gap: 10px;
+}
+
+.modal-button {
+    padding: 12px;
+    background: #333;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.modal-button:hover {
+    background-color: red;
+    color: white;
+}
+
+/* === Existing styles === */
 .date-sec {
     display: flex;
     flex-direction: row;
@@ -11,7 +127,7 @@
     flex-direction: column;
     padding-top: 3vh;
 }
-.datec-main{
+.datec-main {
     height: 15vh;
 }
 
@@ -20,15 +136,11 @@
     font-size: xx-large;
 }
 
-.text b {
-    color: white;
-}
-
-.Tabs{
+.Tabs {
     height: 100vh;
 }
 
-/* Landing Animation */
+/* === Landing Animation === */
 .landing-animation {
     position: fixed;
     top: 0;
@@ -44,14 +156,13 @@
 }
 
 .landing-text {
-    font-size: 10rem; /* Very large */
+    font-size: 10rem;
     color: red;
     font-weight: bold;
     text-shadow: 0 0 20px red;
     animation: zoomFade 4s ease-in-out;
 }
 
-/* Animations */
 @keyframes zoomFade {
     0% {
         opacity: 0;
