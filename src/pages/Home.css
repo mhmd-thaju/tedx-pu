@@ -25,7 +25,7 @@
 }
 
 .Tabs{
-    height: 100vh;
+    min-height: 10vh;
 }
 
 /* Landing Animation */
@@ -50,6 +50,12 @@
     text-shadow: 0 0 20px red;
     animation: zoomFade 4s ease-in-out;
 }
+
+.contact{
+    width:95%;
+    padding-left: 2.5%;
+}
+
 
 /* Animations */
 @keyframes zoomFade {

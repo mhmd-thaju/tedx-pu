@@ -1,9 +1,10 @@
 import React from "react";
 import "./Contact.css";
-import banner from "../assets/contacts_first.png";
+//import banner from "../assets/contacts_first.png";
 //import tdtxt from "../assets/tedx_text.jpg";
 import txt1 from "../assets/thinkers1.png";
-import auro from "../assets/Auroville.png"; // Top image from assets
+//import auro from "../assets/Auroville.png";
+import matrimandir from "../assets/Matrimandir1.png"; // Top image from assets
 
 const Contact = () => {
   const onSubmit = async (event) => {
@@ -37,7 +38,7 @@ const Contact = () => {
       <div className="contact-banner">
         <div className="banner-image">
           <img src={txt1} alt="Contact Banner" />
-          <img src={auro} alt="Contact Banner" />
+          <img src={matrimandir} alt="Contact Banner" />
         </div>
         
 

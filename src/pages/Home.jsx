@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DateCard from '../components/DateCard';
 import Tabs from "../components/Tabs";
+import Contact from "./Contact";
 import "./Home.css";
 
 function Home() {
@@ -45,6 +46,7 @@ function Home() {
             </div>
           </div>
           <div className='Tabs'><Tabs /></div>
+          <div className="contact"><Contact/></div>
         </div>
       )}
     </>
