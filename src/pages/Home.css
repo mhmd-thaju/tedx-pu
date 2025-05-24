@@ -9,6 +9,7 @@
     align-items: center;
     padding: 2rem;
     text-align: center;
+    z-index: 1;
 }
 
 .booking-head {
@@ -37,6 +38,7 @@
     font-size: 1.1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    z-index: 2;
 }
 
 .book-button:hover {
@@ -52,7 +54,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10000;
+    z-index: 99999;
 }
 
 .modal-content {
@@ -64,6 +66,7 @@
     width: 90%;
     max-width: 500px;
     box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    z-index: 100000;
 }
 
 .modal-content h2 {
@@ -144,6 +147,11 @@
     height: 100vh;
 }
 
+.contact{
+    width: 95%;
+    padding-left: 2.5%;
+}
+
 /* === Landing Animation === */
 .landing-animation {
     position: fixed;
@@ -166,12 +174,6 @@
     text-shadow: 0 0 20px red;
     animation: zoomFade 4s ease-in-out;
 }
-
-.contact{
-    width:95%;
-    padding-left: 2.5%;
-}
-
 
 @keyframes zoomFade {
     0% {

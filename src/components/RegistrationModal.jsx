@@ -6,10 +6,13 @@ const RegistrationModal = ({ isOpen, onClose }) => {
 
   return (
     <div className="modal-overlay">
-      <div key={isOpen} className="modal-box">
+      <div className="modal-box animate-modal">
         <button className="modal-close" onClick={onClose}>×</button>
         <h2>Participant Registration Form</h2>
-        <p>Please fill the form below keenly and let us know if you give go ahead for this participation</p>
+        <p>
+          Please fill the form below keenly and let us know if you give
+          go ahead for this participation
+        </p>
         <hr />
         <form className="form-content">
           <label>Name:</label>
@@ -36,7 +39,7 @@ const RegistrationModal = ({ isOpen, onClose }) => {
             <option value="guest">Guest</option>
           </select>
 
-          <button type="submit" className="submit-btn">Next</button>
+          <button type="submit" className="submit-btn glow">Next</button>
         </form>
       </div>
     </div>

@@ -4,7 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.85);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,16 +12,31 @@
 }
 
 .modal-box {
-  background-color: black;
+  background-color: #000;
   border: 1px solid red;
   padding: 40px;
   width: 90%;
   max-width: 500px;
   border-radius: 10px;
-  box-shadow: 0 0 20px red;
-  animation: scaleIn 0.4s ease;
+  box-shadow: 0 0 25px red;
   position: relative;
   color: white;
+}
+
+/* ✅ Animation class added */
+.animate-modal {
+  animation: fadeSlide 0.5s ease-out forwards;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .modal-close {
@@ -33,6 +48,11 @@
   background: none;
   border: none;
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.modal-close:hover {
+  transform: rotate(90deg);
 }
 
 h2 {
@@ -68,20 +88,30 @@ select {
   border: none;
   border-radius: 5px;
   font-size: 1rem;
+  background-color: #111;
+  color: white;
 }
 
-.phone-input {
+input:focus,
+select:focus {
+  outline: 2px solid red;
+  background-color: #181818;
+}
+
+.phone-group {
   display: flex;
   gap: 10px;
 }
 
-.phone-input select,
-.phone-input input {
+.phone-group select,
+.phone-group input {
   flex: 1;
   padding: 12px;
   font-size: 1rem;
   border-radius: 5px;
   border: none;
+  background-color: #111;
+  color: white;
 }
 
 .submit-btn {
@@ -94,22 +124,16 @@ select {
   font-weight: bold;
   margin-top: 20px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.3s;
 }
 
 .submit-btn:hover {
   background-color: red;
+  transform: scale(1.05);
 }
 
-@keyframes scaleIn {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+.glow {
+  box-shadow: 0 0 10px red, 0 0 20px red;
 }
 
 /* Mobile Responsiveness */
