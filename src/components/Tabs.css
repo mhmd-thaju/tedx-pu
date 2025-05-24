@@ -1,31 +1,32 @@
-.tabcontainer{
-  
+.outer{
   display: flex;
   flex-direction:column ;
   position: relative;
   width: 92%;
   left: 4%;
-  background-color: rgb(52, 51, 51);
+}
+
+.tabcontainer{
+  background-color: rgb(26, 26, 26);
   word-break: break-all;
   border: 3px solid rgb(239, 232, 232);
   border-radius: 15px;
   
 }
 
-.tabcontainer:hover{
-  background-color: rgb(38, 33, 33);
-}
+
 
 .tabblock{
   display: flex;
   flex-wrap: nowrap;
+  font-size: larger;
 }
 .tabs{
   padding :15px;
   color: azure;
   text-align: center;
   width: 50%;
-  background-color: rgb(57, 56, 57);
+  background-color: rgb(26, 26, 26);
   cursor: pointer;
   box-sizing: content-box;
   position: relative;
@@ -52,6 +53,8 @@
 
 .tabcontent{
   flex-grow: 1;
+  font-size: x-large;
+  padding-bottom: 15px;
 }
 .content{
   display: none;
@@ -66,4 +69,16 @@
 .active-content{
   display: block
   ;
+}
+
+.wtedevent{
+  padding-top: 30px;
+  text-align: left;
+}
+
+.wtedevent h1{
+  color: rgb(221, 6, 6);
+}
+.wtedevent{
+  font-size: larger;
 }

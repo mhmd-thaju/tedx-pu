@@ -10,7 +10,8 @@ function Tabs (){
 
 
     return(
-        <div className="tabcontainer">
+        <div className="outer">
+            <div className="tabcontainer">
             <div className="tabblock">
                 <button className={toggleState === 1 ? "tabs active-tabs" : "tabs"}  onClick={()=>toggleTab(1)} >TED</button>
                 <button className={toggleState === 2 ? "tabs active-tabs" : "tabs"}  onClick={()=>toggleTab(2)}>TEDX</button>
@@ -37,6 +38,12 @@ function Tabs (){
                     <hr />
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi odio numquam praesentium sit laborum magni, saepe, tempora similique, totam dolorem itaque accusamus! Aperiam perferendis architecto, reiciendis odio reprehenderit repudiandae dolorem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat eveniet excepturi a eius accusamus magnam adipisci suscipit pariatur neque. Officia, temporibus! Dolorum voluptate labore consectetur laborum. Est, sapiente omnis. Earum.</p>
                 </div>
+            </div>
+        </div>
+        <div className="wtedevent">
+                <h1>Why should you attend a TED event ?</h1>
+                <p>Attending a TED event will be on everyone's bucket list and with TEDx, you get a TED-like experience. If you are keen on listening to mind-blowing ideas by talented speakers, TEDx is your way to go!. The “ideas worth spreading” in TEDx events gives you a fresh set of perspective. TEDx is a unique gathering of like-minded people that can unleash ideas and inspiration for tomorrow.</p>
+                
             </div>
         </div>
     )

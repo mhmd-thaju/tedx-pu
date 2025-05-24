@@ -9,7 +9,8 @@ body{
 
 .banner-image  {
   display: flex;
-  background-color: #e50f1b;
+  /*background-color: #e50f1b;*/
+  background-color: #da0c1f;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 20px;
