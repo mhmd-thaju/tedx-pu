@@ -1,11 +1,9 @@
-import React from 'react';
-import './DateCard.css';
+import "./Test.css";
 
-
-const DateCard = ({ date }) => {
-  return (
-    <div className="outer">
-     <button id="start">Repeat</button>
+const Test = () =>{
+    return(
+        <div className="outer">
+            <button id="start">Repeat</button>
   <div class="calendar">
     <div class="counter clearfix">
 
@@ -30,12 +28,11 @@ const DateCard = ({ date }) => {
     </div>
 
     <div class="month">
-      September
+      Month
     </div>
   </div>
-         
-    </div>
-  );
-};
+        </div>
+    )
+}
 
-export default DateCard;
+export default Test;

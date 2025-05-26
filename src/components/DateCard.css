@@ -1,18 +1,136 @@
-.date-card-2 {
+body {
+  font-family: Helvetica;
+  font-weight: bold;
   background-color: #000;
-  color: #fff;
-  padding: 20px;
-  border-left: 6px solid red;
-  font-family: sans-serif;
-  width: fit-content;
+  color: white;
+  margin: 0;
+  padding: 2rem;
+  text-align: center;
 }
-.date-top {
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  opacity: 0.6;
+
+button#start {
+  padding: 0.6rem 1.2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background-color: #E62B1E;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 10px rgba(230, 43, 30, 0.5);
 }
-.date-bottom {
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin-top: 6px;
+button#start:hover {
+  background-color: #aa1d14;
+}
+
+.calendar {
+  width: 33%;
+  margin: 0 auto;
+}
+
+.clearfix:after {
+  content: ".";
+  clear: both;
+  display: block;
+  visibility: hidden;
+  height: 0px;
+}
+
+.counter .sheet {
+  width: 47.5%;
+  height: 18vw;
+  line-height: 18vw;
+  font-size: 12vw;
+  perspective: 1000px;
+  color: white;
+  float: left;
+  box-sizing: border-box;
+  position: relative;
+}
+.counter .sheet:first-of-type {
+  margin-right: 2.5%;
+}
+.counter .sheet:last-of-type {
+  margin-left: 2.5%;
+}
+.counter .sheet > div {
+  height: 50%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.counter .sheet > div span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.counter .sheet .up {
+  top: 0;
+  background-color: #E62B1E;
+}
+.counter .sheet .up span {
+  top: 0;
+}
+
+.counter .sheet .down {
+  bottom: 0;
+  background-color: #AA1D14;
+  border-top: 5px solid white;
+  box-sizing: border-box;
+}
+.counter .sheet .down span {
+  bottom: 0;
+}
+
+.counter .sheet .helper {
+  position: absolute;
+  left: 0;
+}
+.counter .sheet .helper-up {
+  background-color: #E62B1E;
+  top: 0;
+  transform-origin: center bottom;
+}
+.counter .sheet .helper-up span {
+  top: 0;
+}
+.counter .sheet .helper-down {
+  background-color: #AA1D14;
+  top: 50%;
+  border-top: 5px solid white;
+  box-sizing: border-box;
+  transform-origin: center top;
+  transform: rotateX(90deg);
+}
+.counter .sheet .helper-down span {
+  bottom: 0;
+}
+
+@keyframes upflip {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(-90deg);
+  }
+}
+@keyframes downflip {
+  0% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+.month {
+  background-color: #E62B1E;
+  text-align: center;
+  line-height: 3em;
+  font-size: 3vw;
+  color: white;
+  margin-top: 1rem;
 }
