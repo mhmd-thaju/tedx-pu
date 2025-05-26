@@ -73,14 +73,14 @@ const Footer = () => {
                   onMouseLeave={handleMouseLeave}
                   style={hoveredIcon === "instagram" ? { ...iconStyle, ...hoverStyle } : iconStyle}
                 >
-                  <FaInstagram />
+                  <a href="https://www.instagram.com/tedx.pondicherryuniversity/"><FaInstagram /></a>
                 </span>
                 <span
                   onMouseEnter={() => handleMouseEnter("linkedin")}
                   onMouseLeave={handleMouseLeave}
                   style={hoveredIcon === "linkedin" ? { ...iconStyle, ...hoverStyle } : iconStyle}
                 >
-                  <FaLinkedinIn />
+                  <a href="http://www.linkedin.com/in/tedxpondicherryuniversity" style={{textDecoration:"none"}}><FaLinkedinIn /></a>
                 </span>
               </div>
             </div>
