@@ -92,7 +92,7 @@ function Home() {
                 <span className='text'>TEDx Pondicherry University </span>
               </div>
               <div className="datec-main" style={{ display: 'flex', gap: '20px' }}>
-                <DateCard date="September 23,2025 " />
+                <DateCard day={23} month="September" />
               </div>
             </div>
             <div className='Tabs'><Tabs /></div>

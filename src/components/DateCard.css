@@ -85,10 +85,34 @@ button#start:hover {
   bottom: 0;
 }
 
+.month {
+  background-color: #E62B1E;
+  text-align: center;
+  line-height: 3em;
+  font-size: 3vw;
+  color: white;
+  margin-top: 1rem;
+}
+
+/* Flip animation helpers */
 .counter .sheet .helper {
   position: absolute;
   left: 0;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  z-index: 5;
 }
+.counter .sheet .helper span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 12vw;
+  line-height: 18vw;
+  color: white;
+}
+
 .counter .sheet .helper-up {
   background-color: #E62B1E;
   top: 0;
@@ -97,6 +121,7 @@ button#start:hover {
 .counter .sheet .helper-up span {
   top: 0;
 }
+
 .counter .sheet .helper-down {
   background-color: #AA1D14;
   top: 50%;
@@ -109,14 +134,26 @@ button#start:hover {
   bottom: 0;
 }
 
+/* Flip animations */
+.animate-up {
+  animation: upflip 0.5s ease-in forwards;
+  z-index: 2;
+}
+
+.animate-down {
+  animation: downflip 0.5s ease-in forwards;
+  z-index: 1;
+}
+
 @keyframes upflip {
-  from {
+  0% {
     transform: rotateX(0deg);
   }
-  to {
+  100% {
     transform: rotateX(-90deg);
   }
 }
+
 @keyframes downflip {
   0% {
     transform: rotateX(90deg);
@@ -124,13 +161,4 @@ button#start:hover {
   100% {
     transform: rotateX(0deg);
   }
-}
-
-.month {
-  background-color: #E62B1E;
-  text-align: center;
-  line-height: 3em;
-  font-size: 3vw;
-  color: white;
-  margin-top: 1rem;
 }
