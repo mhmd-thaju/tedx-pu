@@ -52,8 +52,9 @@
 }
 
 .tabcontent{
+  font-family: "Tahoma";
   flex-grow: 1;
-  font-size: x-large;
+  font-size: larger;
   padding-bottom: 15px;
 }
 .content{

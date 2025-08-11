@@ -1,7 +1,12 @@
 /* === Booking Section === */
 .full-page {
     height: 100vh;
-    background-color: black;
+    background-image: url('./../assets/PU1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
     color: white;
     display: flex;
     flex-direction: column;
@@ -194,4 +199,16 @@
         opacity: 0;
         visibility: hidden;
     }
+}
+
+@media (max-width: 850px) {
+    .text {
+    color: red;
+    font-size: x-large;
+}
+}
+@media (max-width: 470px) {
+    .text {
+    font-size: large;
+}
 }

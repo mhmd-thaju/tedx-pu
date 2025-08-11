@@ -89,10 +89,10 @@ function Home() {
           <div className='main-con'>
             <div className="date-sec">
               <div className="date-text">
-                <span className='text'>TEDx Pondicherry University </span>
+                <span className='text'>TEDxPondicherry University </span>
               </div>
               <div className="datec-main" style={{ display: 'flex', gap: '20px' }}>
-                <DateCard day={23} month="September" />
+                <DateCard day={13} month="September" />
               </div>
             </div>
             <div className='Tabs'><Tabs /></div>

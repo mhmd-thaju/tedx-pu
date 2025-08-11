@@ -162,3 +162,9 @@ button#start:hover {
     transform: rotateX(0deg);
   }
 }
+
+@media (max-width: 800px){
+  .calendar{
+    width: 67%;
+  }
+}

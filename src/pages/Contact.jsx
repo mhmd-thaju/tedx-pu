@@ -82,7 +82,7 @@ const Contact = () => {
             <button type="submit">Send</button>
           </form>
           <div className="mail-id">
-            <p><b>tedxpondicherryuniversity@gmail.com</b></p>
+            <p>tedxpondicherryuniversity@gmail.com</p>
           </div>
         </div>
       </div>
