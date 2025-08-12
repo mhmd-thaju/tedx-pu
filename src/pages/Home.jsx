@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import DateCard from '../components/DateCard';
 import Tabs from "../components/Tabs";
 import "./Home.css";
+import Contact from './Contact';
 
 function Home() {
   const [showAnimation, setShowAnimation] = useState(false);
@@ -96,6 +97,9 @@ function Home() {
               </div>
             </div>
             <div className='Tabs'><Tabs /></div>
+          </div>
+          <div>
+            <Contact/>
           </div>
         </>
       )}

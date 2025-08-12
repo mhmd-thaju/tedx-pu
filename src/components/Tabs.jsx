@@ -39,8 +39,8 @@ function Tabs (){
                     <p>TEDxPondicherry University is an independently organized TEDx event, licensed by TED, dedicated to sharing ideas that inspire change, spark conversation, and celebrate innovation. Rooted in the rich French–Tamil heritage of Pondicherry, our event brings together thinkers, creators, visionaries, and changemakers from diverse fields to share their unique journeys and transformative ideas with a curated audience.</p>
                 </div>
             </div>
-        </div>
-        <div className="wtedevent">
+            </div>
+            <div className="wtedevent">
                 <h1><b>Why should you attend a TED event ?</b></h1>
                 <p>Attending a TED event will be on everyone's bucket list and with TEDx, you get a TED-like experience. If you are keen on listening to mind-blowing ideas by talented speakers, TEDx is your way to go!. The “ideas worth spreading” in TEDx events gives you a fresh set of perspective. TEDx is a unique gathering of like-minded people that can unleash ideas and inspiration for tomorrow.</p>
                 
