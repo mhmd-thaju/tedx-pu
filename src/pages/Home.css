@@ -132,10 +132,13 @@
 
 .date-text {
     flex-direction: column;
-    padding-top: 3vh;
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
 }
 .datec-main {
-    height: 15vh;
+    height: 20vh;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 .text {
@@ -207,14 +210,23 @@
     font-size: x-large;
 }
 }
+@media (max-width : 520px){
+    .Tabs{
+        height: 115vh;
+    }
+}
+
 @media (max-width: 470px) {
     .text {
-    font-size: large;
+    font-size: larger;
 }
 .landing-text{
     font-size: medium;
 }
 .date-sec{
     height: 70vh;
+}
+.Tabs{
+    height: 120vh;
 }
 }
