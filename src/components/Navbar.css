@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:700");
 
-/* Basic Styling */
+/* Move TEDx Pondicherry University to the very left */
 .navbar {
   position: fixed;
   top: 0;
@@ -10,8 +10,18 @@
   z-index: 999;
 }
 
+/* Force brand to touch left margin */
+.navbar > .container,
+.navbar > .container-fluid {
+  padding-left: 0; /* remove Bootstrap default padding */
+}
 
+.navbar-brand {
+  padding-left: 0;
+  margin-left: 0;
+}
 
+/* Navigation links */
 .navbar-nav {
   margin-left: auto;
   gap: 1rem;
@@ -57,22 +67,22 @@
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='red' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
-/* Responsive Tweaks */
+/* Responsive menu */
 @media (max-width: 991px) {
   .navbar-collapse {
     position: fixed;
     left: 0;
     top: 58px;
-    width: 250px; /* Restrict width */
-    height: 100vh; /* Full screen height */
-    background: transparent; /* Make background transparent */
-    backdrop-filter: blur(10px); /* Optional: Adds blur effect */
+    width: 250px;
+    height: 100vh;
+    background: transparent;
+    backdrop-filter: blur(10px);
     padding: 1rem;
-    z-index: 999; /* Ensures it stays above other content */
+    z-index: 999;
   }
 
   .navbar-nav {
-    flex-direction: column; /* Stack items vertically */
+    flex-direction: column;
     gap: 0.5rem;
   }
 
@@ -83,8 +93,7 @@
   .navb-items {
     margin-top: 1rem;
   }
-
-  
 }
+
 
 

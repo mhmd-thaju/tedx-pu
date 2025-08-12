@@ -1,85 +1,94 @@
-.outer{
+.outer {
   display: flex;
-  flex-direction:column ;
+  flex-direction: column;
   position: relative;
   width: 92%;
   left: 4%;
 }
 
-.tabcontainer{
-  background-color: rgb(26, 26, 26);
-  word-break: break-all;
+.tabbox {
   border: 3px solid rgb(239, 232, 232);
   border-radius: 15px;
-  
-}
-
-
-
-.tabblock{
-  display: flex;
-  flex-wrap: nowrap;
-  font-size: larger;
-}
-.tabs{
-  padding :15px;
-  color: azure;
-  text-align: center;
-  width: 50%;
+  overflow: hidden;
   background-color: rgb(26, 26, 26);
-  cursor: pointer;
-  box-sizing: content-box;
-  position: relative;
-  outline: none;
+}
+
+.tabcontainer {
+  display: flex;
+  align-items: center;
+  background-color: red;
+  padding: 10px;
+}
+
+.tab-heading {
+  flex: 1;
+  text-align: center;
+  font-size: 1.2rem;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Default Black Buttons */
+.slider-btn {
+  flex-shrink: 0;
+  background-color: black;
   border: none;
-  white-space: nowrap; /* Ensures text doesn't break */
-  overflow: hidden; /* Prevents overflow issues */
-  text-overflow: ellipsis; /* Adds "..." if text overflows */
-   
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
 }
-.tabs:not(:last-child){
-  border-right: 1px solid azure;
-}
-.tabs:first-child{
-  border-radius: 13px 0px 0px 0px;
-}
-.tabs:nth-child(3){
-  border-radius: 0px 13px 0px 0px;
-}
-.active-tabs{
-  background-color: rgb(221, 6, 6);
+
+/* On Hover: White Background, Black Text */
+.slider-btn:hover {
+  background-color: white;
   color: black;
 }
 
-.tabcontent{
+.tabcontent {
   font-family: "Tahoma";
-  flex-grow: 1;
   font-size: larger;
-  padding-bottom: 15px;
-}
-.content{
-  display: none;
+  padding: 15px;
+  color: azure;
 }
 
-.content p{
-  width: 95%;
-  padding-left: 2.5%;
-  height: 100%;
+.tabcontent p {
+  font-weight: normal;
 }
 
-.active-content{
-  display: block
-  ;
+.active-content {
+  display: block;
 }
 
-.wtedevent{
+.wtedevent {
   padding-top: 30px;
   text-align: left;
+  font-size: larger;
 }
 
-.wtedevent h1{
+.wtedevent h1 {
   color: rgb(221, 6, 6);
+  font-weight: normal;
 }
-.wtedevent{
-  font-size: larger;
+
+/* Unbold Outside Paragraph */
+.no-bold {
+  font-weight: normal;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .tab-heading {
+    font-size: 1rem;
+  }
+  .slider-btn {
+    font-size: 1.2rem;
+    width: 35px;
+    height: 35px;
+  }
 }
