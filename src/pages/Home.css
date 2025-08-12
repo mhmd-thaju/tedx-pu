@@ -210,6 +210,12 @@
     font-size: x-large;
 }
 }
+@media (max-width : 520px){
+    .Tabs{
+        height: 115vh;
+    }
+}
+
 @media (max-width: 470px) {
     .text {
     font-size: larger;
@@ -219,5 +225,8 @@
 }
 .date-sec{
     height: 70vh;
+}
+.Tabs{
+    height: 120vh;
 }
 }
