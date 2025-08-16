@@ -32,7 +32,7 @@ function MainLayout() {
       {/*showHome && <Home />*/}
 
       {/* Routes Section */}
-      <div className="flex-grow-1">
+      <div className="main flex-grow-1">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />

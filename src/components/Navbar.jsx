@@ -18,7 +18,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-black px-3">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-black">
       <div className="container-fluid" ref={navbarRef}>
         <Link to="/" className="navbar-brand d-flex flex-column">
           <div>
