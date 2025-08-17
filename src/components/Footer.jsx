@@ -54,20 +54,7 @@ const Footer = () => {
             <div className="col-md-6 mb-4">
               <h5 style={{ fontWeight: "bold" }}>Social</h5>
               <div className="d-flex justify-content-center justify-content-md-start gap-4 mt-3">
-                <span
-                  onMouseEnter={() => handleMouseEnter("facebook")}
-                  onMouseLeave={handleMouseLeave}
-                  style={hoveredIcon === "facebook" ? { ...iconStyle, ...hoverStyle } : iconStyle}
-                >
-                  <FaFacebookF />
-                </span>
-                <span
-                  onMouseEnter={() => handleMouseEnter("twitter")}
-                  onMouseLeave={handleMouseLeave}
-                  style={hoveredIcon === "twitter" ? { ...iconStyle, ...hoverStyle } : iconStyle}
-                >
-                  <FaTwitter />
-                </span>
+                
                 <span
                   onMouseEnter={() => handleMouseEnter("instagram")}
                   onMouseLeave={handleMouseLeave}

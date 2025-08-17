@@ -169,4 +169,13 @@ button#start:hover {
   .month{
     font-size: 4vw;
   }
+  .counter .sheet {
+  height: 10rem;
+  line-height: 10rem;
+  font-size: 6rem;
+}
+.counter .sheet .helper span {
+  font-size: 6rem;
+  line-height: 10rem;
+}
 }

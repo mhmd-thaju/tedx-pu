@@ -10,6 +10,7 @@ import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import Sponsors from "./pages/Sponsors.js";
 import Speakers from "./pages/Speakers.jsx";
+import ViewportManager from './components/ViewportManager.jsx';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function MainLayout() {
   return (
     <div className="App d-flex flex-column min-vh-100" style={{ backgroundColor: "#000" }}>
       <Navbar />
+      
 
       {/* Show Home only for "/" or "/home" */}
       {/*showHome && <Home />*/}
