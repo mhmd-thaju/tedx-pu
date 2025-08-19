@@ -236,3 +236,8 @@
     }
 }
 
+@media(max-width:377px){
+    .Tabs{
+        height: 110vh;
+    }
+}
