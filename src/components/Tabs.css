@@ -78,6 +78,7 @@
 
 /* Unbold Outside Paragraph */
 .no-bold {
+  font-size: small;
   font-weight: normal;
 }
 
@@ -90,5 +91,13 @@
     font-size: 1.2rem;
     width: 35px;
     height: 35px;
+  }
+}
+@media (max-height:655px){
+  .wtedevent{
+    padding-top: 20px;
+  }
+  .tabcontent{
+    font-size: medium;
   }
 }

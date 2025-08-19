@@ -96,5 +96,17 @@
   }
 }
 
+@media(max-width: 380px){
+  .navbar-brand{
+    font-size: large;
+  }
+  .navbar-brand {
+    align-items: start;
+  }
+  .small{
+    display: none;
+  }
+}
+
 
 

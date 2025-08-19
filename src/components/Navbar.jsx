@@ -24,7 +24,7 @@ const Navbar = () => {
           <div>
             <span style={{ color: "red", fontWeight: "bold" }}>TEDx</span>PondicherryUniversity
           </div>
-          <small style={{ fontSize: "0.75rem", color: "white" }}>
+          <small style={{ fontSize: "0.75rem", color: "white" }} className="small">
             x = independently organized TED event
           </small>
         </Link>
