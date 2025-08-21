@@ -3,6 +3,7 @@ import DateCard from '../components/DateCard';
 import Tabs from "../components/Tabs";
 import "./Home.css";
 import Contact from './Contact';
+import RegistrationModal from '../components/RegistrationModal';
 
 function Home() {
   const [showAnimation, setShowAnimation] = useState(false);
@@ -34,6 +35,7 @@ function Home() {
       setReadyToShowContent(true);
     }
   }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -69,7 +71,6 @@ function Home() {
     }
   };
 
-
   return (
     <>
       {showAnimation && (
@@ -93,70 +94,16 @@ function Home() {
             <button className="book-button" onClick={() => setShowModal(true)}>Book Now</button>
           </div>
 
-          {/* Modal */}
-          {showModal && (
-            <div className="modal-overlay" onClick={() => setShowModal(false)}>
-              <div className="modal-content" onClick={e => e.stopPropagation()}>
-                <h2>Participant Registration Form</h2>
-                <p>Please fill the form below keenly and let us know if you give go ahead for this participation</p>
-                <hr />
-                <form onSubmit={handleSubmit}>
-                  <label>Name:</label>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Full Name"
-                    value={formData.name}
-                    onChange={handleChange}
-                  />
-
-                  <label>Phone:</label>
-                  <div className="phone-input">
-                    <select disabled>
-                      <option>+91</option>
-                    </select>
-                    <input
-                      type="text"
-                      name="phone"
-                      placeholder="Phone Number"
-                      value={formData.phone}
-                      onChange={handleChange}
-                    />
-                  </div>
-
-                  <label>Email:</label>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
-
-                  <label>Category:</label>
-                  <select
-                    name="category"
-                    value={formData.category}
-                    onChange={handleChange}
-                  >
-                    <option value="">Select an option</option>
-                    <option value="Student">Student</option>
-                    <option value="Guest">Guest</option>
-                    <option value="Speaker">Speaker</option>
-                  </select>
-
-                  <button type="submit" className="modal-button" disabled={loading}>
-                    {loading ? <span>Submitting <span className="spinner"></span></span>
-                      : submitted ? "Done!"
-                        : "Next"}
-                  </button>
-
-
-                </form>
-
-              </div>
-            </div>
-          )}
+          {/* Registration Modal */}
+          <RegistrationModal
+            isOpen={showModal}
+            onClose={() => setShowModal(false)}
+            onSubmit={handleSubmit}
+            formData={formData}
+            onChange={handleChange}
+            loading={loading}
+            submitted={submitted}
+          />
 
           {/* Event Info & Tabs Section */}
           <div className='main-con'>

@@ -1,8 +1,64 @@
-import React from 'react';
+import { useState } from "react";
 import './RegistrationModal.css';
 
 const RegistrationModal = ({ isOpen, onClose }) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    category: ""
+  });
+
+  const [errors, setErrors] = useState({});
+
   if (!isOpen) return null;
+
+  const validate = () => {
+    let newErrors = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    }
+
+    // ✅ Phone validation: must end with exactly 10 digits
+    // Example valid: 9876543210, +919876543210
+    const phoneRegex = /^(\+?\d{1,3})?\d{10}$/;
+    if (!phoneRegex.test(formData.phone.trim())) {
+      newErrors.phone = "Phone must be exactly 10 digits (with optional country code)";
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email.trim())) {
+      newErrors.email = "Enter a valid email address";
+    }
+
+    if (!formData.category) {
+      newErrors.category = "Please select a category";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      alert(`Form submitted ✅\nPhone: ${formData.phone}`);
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        category: ""
+      });
+      setErrors({});
+      onClose();
+    }
+  };
 
   return (
     <div className="modal-overlay">
@@ -14,30 +70,53 @@ const RegistrationModal = ({ isOpen, onClose }) => {
           go ahead for this participation
         </p>
         <hr />
-        <form className="form-content">
+        <form className="form-content" onSubmit={handleSubmit}>
           <label>Name:</label>
-          <input type="text" placeholder="Full Name" required />
+          <input
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+          {errors.name && <span className="error-text">{errors.name}</span>}
 
           <label>Phone:</label>
-          <div className="phone-group">
-            <select className="country-code" defaultValue="+91">
-              <option>+91</option>
-              <option>+1</option>
-              <option>+44</option>
-            </select>
-            <input className="phone-number" type="tel" placeholder="Phone Number" required />
-          </div>
+          <input
+            className="phone-number"
+            type="tel"
+            name="phone"
+            placeholder="Phone Number"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+          />
+          {errors.phone && <span className="error-text">{errors.phone}</span>}
 
           <label>Email:</label>
-          <input type="email" placeholder="Email" required />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+          {errors.email && <span className="error-text">{errors.email}</span>}
 
           <label>Category:</label>
-          <select required>
+          <select
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            required
+          >
             <option value="">Select an option</option>
-            <option value="student">Student</option>
-            <option value="professional">Professional</option>
-            <option value="guest">Guest</option>
+            <option value="Veg">Veg</option>
+            <option value="Non-Veg">Non-Veg</option>
           </select>
+          {errors.category && <span className="error-text">{errors.category}</span>}
 
           <button type="submit" className="submit-btn glow">Next</button>
         </form>

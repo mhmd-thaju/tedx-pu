@@ -80,6 +80,7 @@ hr {
   font-weight: bold;
 }
 
+/* 🔴 Input & Select with red text */
 input,
 select {
   width: 100%;
@@ -89,13 +90,22 @@ select {
   border-radius: 5px;
   font-size: 1rem;
   background-color: #111;
-  color: white;
+  color: red; /* user text will be red */
 }
 
+/* 🔴 Placeholder red */
+input::placeholder,
+select option[value=""] {
+  color: red;
+  opacity: 0.8;
+}
+
+/* 🔴 Focus styling */
 input:focus,
 select:focus {
   outline: 2px solid red;
   background-color: #181818;
+  color: red;
 }
 
 .phone-group {
@@ -111,7 +121,7 @@ select:focus {
   border-radius: 5px;
   border: none;
   background-color: #111;
-  color: white;
+  color: red; /* ensure red text inside phone field */
 }
 
 .submit-btn {
