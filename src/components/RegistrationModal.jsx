@@ -51,7 +51,7 @@ const RegistrationModal = ({ isOpen, onClose }) => {
       setIsSubmitting(true);
 
       try {
-        await fetch("https://script.google.com/macros/s/AKfycbysKY5fz-wL4PE12m9NNLbm0CCpaUe2vossB_HEgE6kLlcaaB2UpCn9NY-APnVFEdE_/exec", {
+        await fetch("https://script.google.com/macros/s/AKfycbwc36TNIsFPuQuXQeW2cAV885Uf9hkIah147MC19aq1Dr8BFvaRnhJ3lelRsAO_K8Vf/exec", {
           method: "POST",
           mode: "no-cors", // ✅ prevents CORS issue
           headers: {
