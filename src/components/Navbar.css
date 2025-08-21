@@ -106,6 +106,12 @@
   .small{
     display: none;
   }
+  .navb-items{
+    margin-top: 0;
+  }
+  .navbar-collapse{
+    top: 57px;
+  }
 }
 
 
