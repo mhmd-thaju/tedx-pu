@@ -92,6 +92,9 @@
     width: 35px;
     height: 35px;
   }
+  .no-bold{
+    font-size: small;
+  }
 }
 @media (max-height:655px){
   .wtedevent{
