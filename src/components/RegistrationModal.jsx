@@ -10,6 +10,8 @@ const RegistrationModal = ({ isOpen, onClose }) => {
   });
 
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   if (!isOpen) return null;
 
@@ -20,8 +22,6 @@ const RegistrationModal = ({ isOpen, onClose }) => {
       newErrors.name = "Name is required";
     }
 
-    // ✅ Phone validation: must end with exactly 10 digits
-    // Example valid: 9876543210, +919876543210
     const phoneRegex = /^(\+?\d{1,3})?\d{10}$/;
     if (!phoneRegex.test(formData.phone.trim())) {
       newErrors.phone = "Phone must be exactly 10 digits (with optional country code)";
@@ -46,20 +46,24 @@ const RegistrationModal = ({ isOpen, onClose }) => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  if (validate()) {
-    try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbzWom0TitXEDt-VzMZMYhESbL5HwLOV5ofjSfaC0llICmVr863DkwWiRSzbJrsWeOc/exec", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+    e.preventDefault();
+    if (validate()) {
+      setIsSubmitting(true);
 
-      const result = await response.json();
-      if (result.result === "success") {
-        alert("✅ Registration successful!");
+      try {
+        await fetch("https://script.google.com/macros/s/AKfycbysKY5fz-wL4PE12m9NNLbm0CCpaUe2vossB_HEgE6kLlcaaB2UpCn9NY-APnVFEdE_/exec", {
+          method: "POST",
+          mode: "no-cors", // ✅ prevents CORS issue
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+
+        // Show success animation
+        setIsSuccess(true);
+
+        // Reset form after success
         setFormData({
           name: "",
           phone: "",
@@ -67,17 +71,20 @@ const RegistrationModal = ({ isOpen, onClose }) => {
           category: ""
         });
         setErrors({});
-        onClose(); // close modal after success
-      } else {
-        alert("❌ Submission failed. Try again.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("⚠️ Network error, please try again later.");
-    }
-  }
-};
 
+        // Close after 2s delay
+        setTimeout(() => {
+          setIsSuccess(false);
+          setIsSubmitting(false);
+          onClose();
+        }, 2000);
+
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        setIsSubmitting(false);
+      }
+    }
+  };
 
   return (
     <div className="modal-overlay">
@@ -89,56 +96,66 @@ const RegistrationModal = ({ isOpen, onClose }) => {
           go ahead for this participation
         </p>
         <hr />
-        <form className="form-content" onSubmit={handleSubmit}>
-          <label>Name:</label>
-          <input
-            type="text"
-            name="name"
-            placeholder="Full Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-          {errors.name && <span className="error-text">{errors.name}</span>}
 
-          <label>Phone:</label>
-          <input
-            className="phone-number"
-            type="tel"
-            name="phone"
-            placeholder="Phone Number"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-          />
-          {errors.phone && <span className="error-text">{errors.phone}</span>}
+        {isSuccess ? (
+          <div className="success-animation">
+            <div className="checkmark">✔</div>
+            <p>Done!</p>
+          </div>
+        ) : (
+          <form className="form-content" onSubmit={handleSubmit}>
+            <label>Name:</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+            {errors.name && <span className="error-text">{errors.name}</span>}
 
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          {errors.email && <span className="error-text">{errors.email}</span>}
+            <label>Phone:</label>
+            <input
+              className="phone-number"
+              type="tel"
+              name="phone"
+              placeholder="Phone Number"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+            />
+            {errors.phone && <span className="error-text">{errors.phone}</span>}
 
-          <label>Category:</label>
-          <select
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select an option</option>
-            <option value="Veg">Veg</option>
-            <option value="Non-Veg">Non-Veg</option>
-          </select>
-          {errors.category && <span className="error-text">{errors.category}</span>}
+            <label>Email:</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            {errors.email && <span className="error-text">{errors.email}</span>}
 
-          <button type="submit" className="submit-btn glow">Next</button>
-        </form>
+            <label>Category:</label>
+            <select
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select an option</option>
+              <option value="Veg">Veg</option>
+              <option value="Non-Veg">Non-Veg</option>
+            </select>
+            {errors.category && <span className="error-text">{errors.category}</span>}
+
+            <button type="submit" className="submit-btn glow" disabled={isSubmitting}>
+              {isSubmitting ? "Submitting..." : "Next"}
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );
