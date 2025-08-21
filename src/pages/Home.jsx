@@ -9,14 +9,6 @@ function Home() {
   const [showAnimation, setShowAnimation] = useState(false);
   const [readyToShowContent, setReadyToShowContent] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    category: ""
-  });
-  const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     const hasShown = sessionStorage.getItem('hasShownAnimation');
@@ -35,41 +27,6 @@ function Home() {
       setReadyToShowContent(true);
     }
   }, []);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (loading) return; // prevent multiple submits
-
-    setLoading(true);
-
-    try {
-      await fetch("https://script.google.com/macros/s/AKfycbysKY5fz-wL4PE12m9NNLbm0CCpaUe2vossB_HEgE6kLlcaaB2UpCn9NY-APnVFEdE_/exec", {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: { "Content-Type": "application/json" },
-        mode: "no-cors"  // optional, for CORS issues
-      });
-
-      setSubmitted(true);
-      setFormData({ name: "", phone: "", email: "", category: "" });
-
-      // Close modal after short delay
-      setTimeout(() => {
-        setShowModal(false);
-        setSubmitted(false);
-      }, 1500);
-
-    } catch (err) {
-      console.error("Submission failed", err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <>
@@ -98,11 +55,6 @@ function Home() {
           <RegistrationModal
             isOpen={showModal}
             onClose={() => setShowModal(false)}
-            onSubmit={handleSubmit}
-            formData={formData}
-            onChange={handleChange}
-            loading={loading}
-            submitted={submitted}
           />
 
           {/* Event Info & Tabs Section */}

@@ -10,6 +10,8 @@ const RegistrationModal = ({ isOpen, onClose }) => {
   });
 
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false); // ✅ new
+  const [success, setSuccess] = useState(false); // ✅ new
 
   if (!isOpen) return null;
 
@@ -20,8 +22,6 @@ const RegistrationModal = ({ isOpen, onClose }) => {
       newErrors.name = "Name is required";
     }
 
-    // ✅ Phone validation: must end with exactly 10 digits
-    // Example valid: 9876543210, +919876543210
     const phoneRegex = /^(\+?\d{1,3})?\d{10}$/;
     if (!phoneRegex.test(formData.phone.trim())) {
       newErrors.phone = "Phone must be exactly 10 digits (with optional country code)";
@@ -45,18 +45,38 @@ const RegistrationModal = ({ isOpen, onClose }) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validate()) {
-      alert(`Form submitted ✅\nPhone: ${formData.phone}`);
-      setFormData({
-        name: "",
-        phone: "",
-        email: "",
-        category: ""
+    if (!validate()) return;
+
+    setLoading(true);
+    setErrors({});
+    setSuccess(false);
+
+    try {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbwc36TNIsFPuQuXQeW2cAV885Uf9hkIah147MC19aq1Dr8BFvaRnhJ3lelRsAO_K8Vf/exec", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
-      setErrors({});
-      onClose();
+
+      if (response.ok) {
+        setSuccess(true);
+        setFormData({ name: "", phone: "", email: "", category: "" });
+        setTimeout(() => {
+          setLoading(false);
+          onClose();
+        }, 1500);
+      } else {
+        alert("Something went wrong. Please try again.");
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Network error. Please try again.");
+      setLoading(false);
     }
   };
 
@@ -118,8 +138,16 @@ const RegistrationModal = ({ isOpen, onClose }) => {
           </select>
           {errors.category && <span className="error-text">{errors.category}</span>}
 
-          <button type="submit" className="submit-btn glow">Next</button>
+          <button 
+            type="submit" 
+            className="submit-btn glow" 
+            disabled={loading} // ✅ prevent multiple submission
+          >
+            {loading ? "Submitting..." : "Next"}
+          </button>
         </form>
+
+        {success && <p className="success-text">🎉 Ticket booked successfully!</p>}
       </div>
     </div>
   );
