@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./RegistrationModal.css";
-import { FaUserGraduate, FaUsers } from "react-icons/fa"; 
+import { FaUserGraduate, FaUsers } from "react-icons/fa";
 import studentQR from "../assets/upi_qr_299.png";
 import generalQR from "../assets/upi_qr_399.png";
 
@@ -10,6 +10,8 @@ const RegistrationModal = ({ isOpen, onClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSecondModal, setShowSecondModal] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   if (!isOpen) return null;
 
@@ -19,7 +21,6 @@ const RegistrationModal = ({ isOpen, onClose }) => {
     let newErrors = {};
     if (!formData.name.trim()) newErrors.name = "Name is required";
 
-    // Phone validation
     const phoneRegex = /^[0-9]{10}$/;
     if (!formData.phone.trim()) {
       newErrors.phone = "Phone number is required";
@@ -27,7 +28,6 @@ const RegistrationModal = ({ isOpen, onClose }) => {
       newErrors.phone = "Phone must be exactly 10 digits";
     }
 
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) newErrors.email = "Email is required";
     else if (!emailRegex.test(formData.email.trim())) newErrors.email = "Enter a valid email address";
@@ -38,37 +38,84 @@ const RegistrationModal = ({ isOpen, onClose }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      setIsSubmitting(true);
-      try {
-        await fetch(
-          "https://script.google.com/macros/s/AKfycbwc36TNIsFPuQuXQeW2cAV885Uf9hkIah147MC19aq1Dr8BFvaRnhJ3lelRsAO_K8Vf/exec",
-          { 
-            method: "POST", 
-            mode: "no-cors", 
-            headers: { "Content-Type": "application/json" }, 
-            body: JSON.stringify(formData) 
-          }
-        );
-        setShowSecondModal(true);
-        setIsSubmitting(false);
-        setErrors({});
-        // ⚠️ Do not reset formData here, otherwise first click clears input
-      } catch (err) {
-        console.error(err);
-        setIsSubmitting(false);
-      }
+      setShowSecondModal(true);
     }
   };
 
-  const handleCategoryClick = (category) => setSelectedCategory(category);
-  const handleCloseAll = () => { setShowSecondModal(false); setSelectedCategory(""); onClose(); };
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
 
-  const amount = selectedCategory === "Student" ? 299 : 399;
+  const handleCloseAll = () => {
+    setShowSecondModal(false);
+    setSelectedCategory("");
+    onClose();
+  };
+
+  const amount = selectedCategory === "Student" ? 399 : 499;
   const upiUrl = `upi://pay?pa=tedxpu@indianbk&pn=TEDxPU&am=${amount}&cu=INR&tn=Ticket`;
   const qrImage = selectedCategory === "Student" ? studentQR : generalQR;
+
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+
+  const handleFinalSubmit = async () => {
+    if (!image) {
+      alert("Please upload an image before submitting.");
+      return;
+    }
+
+    const cloudForm = new FormData();
+    cloudForm.append("file", image);
+    cloudForm.append("upload_preset", "TEDx_registration"); // 🔁 Replace with your Cloudinary preset
+
+    setLoading(true);
+
+    try {
+      // 1. Upload to Cloudinary
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/dovasvkjm/image/upload", // 🔁 Replace with your Cloudinary cloud name
+        {
+          method: "POST",
+          body: cloudForm,
+        }
+      );
+
+      const data = await res.json();
+
+      if (!data.secure_url) throw new Error("Image upload failed.");
+
+      const imlink = data.secure_url;
+
+      // 2. Send all data + image link to Google Sheets
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbwQ11GECwJ7y0Tva7YNbd-I5AqxAIcJrt6rrJ3l9FshsBElG8cwOHRGeRKuQIQKimvr/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ...formData,
+            ticketType: selectedCategory,
+            imageUrl: imlink,
+          }),
+        }
+      );
+
+      alert("🎉 Welcome aboard!, We will be sending your ticket shortly, Kindly please check your Mail.");
+      handleCloseAll();
+
+    } catch (err) {
+      console.error("Submission failed:", err);
+      alert("❌ Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -110,10 +157,18 @@ const RegistrationModal = ({ isOpen, onClose }) => {
         <div className="modal-overlay">
           <div className="modal-box animate-modal">
             <button className="modal-close" onClick={handleCloseAll}>×</button>
-            <h2>Choose Your Category</h2>
+            <h2>Choose Your Ticket Type</h2>
             <div className="orange-box-container">
-              <div className="orange-box" onClick={() => handleCategoryClick("Student")}><FaUserGraduate size={40} /><span>Student</span></div>
-              <div className="orange-box" onClick={() => handleCategoryClick("General")}><FaUsers size={40} /><span>General</span></div>
+              <div className="orange-box" onClick={() => handleCategoryClick("Student")}>
+                <FaUserGraduate size={40} />
+                <span>Student</span>
+                <br />
+                <sub>Applicable only for students</sub>
+              </div>
+              <div className="orange-box" onClick={() => handleCategoryClick("General")}>
+                <FaUsers size={40} />
+                <span>General</span>
+              </div>
             </div>
             <p className="disclaimer">* Students should carry valid ID proof.</p>
           </div>
@@ -130,7 +185,21 @@ const RegistrationModal = ({ isOpen, onClose }) => {
             <div className="qr-container">
               <img src={qrImage} alt={`${selectedCategory} QR`} style={{ width: "200px", height: "200px" }} />
             </div>
-            <a href={upiUrl} target="_blank" rel="noreferrer" className="submit-btn glow">Pay via UPI App</a>
+            <a href={upiUrl} target="_blank" rel="noreferrer" className="submit-btn glow">
+              Pay via UPI App
+            </a>
+            <hr />
+            <div>
+              <h3>Upload Payment Screenshot</h3>
+              <input type="file" onChange={handleImageChange} accept="image/*" className="imgb"/>
+              <button onClick={handleFinalSubmit} className="imgb" disabled={loading || !image}>
+                {loading ? 'Submitting...' : 'Submit Registration'}
+              </button>
+            </div>
+            <hr />
+            <div>
+              <p>For queries : info.tedxpu@gmail.com</p>
+            </div>
           </div>
         </div>
       )}
