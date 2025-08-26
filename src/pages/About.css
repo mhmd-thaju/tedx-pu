@@ -1,0 +1,55 @@
+.about-container {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding: 3rem 1.5rem;
+  background: linear-gradient(to right, #000000, #1c1c1c);
+  color: white;
+  min-height: 100vh;
+}
+
+.about-content {
+  width: 100%;
+  max-width: 960px;
+}
+
+.about-section {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.about-ted {
+  background-color: #111;
+}
+
+.about-tedx {
+  background-color: #1a1a1a;
+}
+
+.about-tedx-pu {
+  background-color: #222;
+}
+
+.section-title {
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #FF2B06;
+  font-size: 2rem;
+}
+
+.section-description {
+  font-size: 1.25rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.5rem; /* Reduce font size for headings on mobile */
+  }
+
+  .section-description {
+    font-size: 1rem; /* Reduce font size for paragraphs on mobile */
+  }
+}
