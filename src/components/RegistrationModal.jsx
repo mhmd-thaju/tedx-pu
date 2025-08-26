@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./RegistrationModal.css";
 import { FaUserGraduate, FaUsers } from "react-icons/fa"; 
-import studentQR from "../assets/Auroville.png";
-import generalQR from "../assets/Auroville.png";
+import studentQR from "../assets/upi_qr_299.png";
+import generalQR from "../assets/upi_qr_399.png";
 
 const RegistrationModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({ name: "", phone: "", email: "", category: "" });
@@ -18,11 +18,22 @@ const RegistrationModal = ({ isOpen, onClose }) => {
   const validate = () => {
     let newErrors = {};
     if (!formData.name.trim()) newErrors.name = "Name is required";
-    const phoneRegex = /^(\+?\d{1,3})?\d{10}$/;
-    if (!phoneRegex.test(formData.phone.trim())) newErrors.phone = "Phone must be exactly 10 digits";
+
+    // Phone validation
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone number is required";
+    } else if (!phoneRegex.test(formData.phone.trim())) {
+      newErrors.phone = "Phone must be exactly 10 digits";
+    }
+
+    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email.trim())) newErrors.email = "Enter a valid email address";
+    if (!formData.email.trim()) newErrors.email = "Email is required";
+    else if (!emailRegex.test(formData.email.trim())) newErrors.email = "Enter a valid email address";
+
     if (!formData.category) newErrors.category = "Please select a category";
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -34,12 +45,17 @@ const RegistrationModal = ({ isOpen, onClose }) => {
       try {
         await fetch(
           "https://script.google.com/macros/s/AKfycbwc36TNIsFPuQuXQeW2cAV885Uf9hkIah147MC19aq1Dr8BFvaRnhJ3lelRsAO_K8Vf/exec",
-          { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/json" }, body: JSON.stringify(formData) }
+          { 
+            method: "POST", 
+            mode: "no-cors", 
+            headers: { "Content-Type": "application/json" }, 
+            body: JSON.stringify(formData) 
+          }
         );
         setShowSecondModal(true);
         setIsSubmitting(false);
-        setFormData({ name: "", phone: "", email: "", category: "" });
         setErrors({});
+        // ⚠️ Do not reset formData here, otherwise first click clears input
       } catch (err) {
         console.error(err);
         setIsSubmitting(false);
@@ -51,8 +67,7 @@ const RegistrationModal = ({ isOpen, onClose }) => {
   const handleCloseAll = () => { setShowSecondModal(false); setSelectedCategory(""); onClose(); };
 
   const amount = selectedCategory === "Student" ? 299 : 399;
-  const upiUrl = "upi://pay?pa=tedxpu@indianbk&pn=TEDxPU&am=" + amount + "&cu=INR&tn=Ticket";
-
+  const upiUrl = `upi://pay?pa=tedxpu@indianbk&pn=TEDxPU&am=${amount}&cu=INR&tn=Ticket`;
   const qrImage = selectedCategory === "Student" ? studentQR : generalQR;
 
   return (
@@ -67,12 +82,15 @@ const RegistrationModal = ({ isOpen, onClose }) => {
               <label>Name:</label>
               <input type="text" name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} />
               {errors.name && <span className="error-text">{errors.name}</span>}
+
               <label>Phone:</label>
               <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} />
               {errors.phone && <span className="error-text">{errors.phone}</span>}
+
               <label>Email:</label>
               <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
               {errors.email && <span className="error-text">{errors.email}</span>}
+
               <label>Category:</label>
               <select name="category" value={formData.category} onChange={handleChange}>
                 <option value="">Select an option</option>
@@ -80,6 +98,7 @@ const RegistrationModal = ({ isOpen, onClose }) => {
                 <option value="Non-Veg">Non-Veg</option>
               </select>
               {errors.category && <span className="error-text">{errors.category}</span>}
+
               <button type="submit" className="submit-btn glow">{isSubmitting ? "Submitting..." : "Next"}</button>
             </form>
           </div>
@@ -111,7 +130,7 @@ const RegistrationModal = ({ isOpen, onClose }) => {
             <div className="qr-container">
               <img src={qrImage} alt={`${selectedCategory} QR`} style={{ width: "200px", height: "200px" }} />
             </div>
-            <a href={upiUrl} target="_blank" className="submit-btn glow">Pay via UPI App</a>
+            <a href={upiUrl} target="_blank" rel="noreferrer" className="submit-btn glow">Pay via UPI App</a>
           </div>
         </div>
       )}
