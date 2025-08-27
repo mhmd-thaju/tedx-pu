@@ -1,8 +1,7 @@
 import { useState } from "react";
 import "./RegistrationModal.css";
 import { FaUserGraduate, FaUsers } from "react-icons/fa";
-import studentQR from "../assets/upi_qr_299.png";
-import generalQR from "../assets/upi_qr_399.png";
+import { QRCodeSVG } from 'qrcode.react';
 
 const RegistrationModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({ name: "", phone: "", email: "", category: "" });
@@ -56,8 +55,10 @@ const RegistrationModal = ({ isOpen, onClose }) => {
   };
 
   const amount = selectedCategory === "Student" ? 399 : 499;
-  const upiUrl = `upi://pay?pa=tedxpu@indianbk&pn=TEDxPU&am=${amount}&cu=INR&tn=Ticket`;
-  const qrImage = selectedCategory === "Student" ? studentQR : generalQR;
+  const upiUrl = `upi://pay?pa=tedxpu@indianbk&pn=TEDxPU&am=${amount}&cu=INR&tn=${formData.name} Ticket`;
+  const upiUrli = `upi://pay?pa=tedxpu@indianbk&pn=TEDxPU&am=${amount}&cu=INR&tn=${encodeURIComponent(formData.name)}%20Ticket`;
+
+  
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -92,19 +93,7 @@ const RegistrationModal = ({ isOpen, onClose }) => {
       const imlink = data.secure_url;
 
       // 2. Send all data + image link to Google Sheets
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbwQ11GECwJ7y0Tva7YNbd-I5AqxAIcJrt6rrJ3l9FshsBElG8cwOHRGeRKuQIQKimvr/exec",
-        {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            ...formData,
-            ticketType: selectedCategory,
-            imageUrl: imlink,
-          }),
-        }
-      );
+      
 
       alert("🎉 Welcome aboard!, We will be sending your ticket shortly, Kindly please check your Mail.");
       handleCloseAll();
@@ -183,7 +172,7 @@ const RegistrationModal = ({ isOpen, onClose }) => {
             <h2>{selectedCategory} Payment</h2>
             <p>Pay ₹{amount} via UPI</p>
             <div className="qr-container">
-              <img src={qrImage} alt={`${selectedCategory} QR`} style={{ width: "200px", height: "200px" }} />
+              <QRCodeSVG value={upiUrli} size={150} className="img" style={{padding:'4px'}}/>
             </div>
             <a href={upiUrl} target="_blank" rel="noreferrer" className="submit-btn glow">
               Pay via UPI App
