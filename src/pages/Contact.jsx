@@ -2,9 +2,9 @@ import React from "react";
 import "./Contact.css";
 //import banner from "../assets/contacts_first.png";
 //import tdtxt from "../assets/tedx_text.jpg";
-import txt1 from "../assets/thinkers1.png";
+//import txt1 from "../assets/thinkers1.png";
 //import auro from "../assets/Auroville.png";
-import matrimandir from "../assets/Matrimandir1.png"; // Top image from assets
+//import matrimandir from "../assets/Matrimandir1.png"; // Top image from assets
 
 const Contact = () => {
   const onSubmit = async (event) => {
@@ -37,8 +37,8 @@ const Contact = () => {
       {/* Top banner image */}
       <div className="contact-banner">
         <div className="banner-image">
-          <img src={txt1} alt="Contact Banner" />
-          <img src={matrimandir} alt="Contact Banner" />
+          <img src="https://res.cloudinary.com/dovasvkjm/image/upload/v1756313314/rr4hyujgq4y02dlcultc.png" alt="Contact Banner" />
+          <img src="https://res.cloudinary.com/dovasvkjm/image/upload/v1756313181/bsjdsa2afryyibkqkqtv.png" alt="Contact Banner" />
         </div>
 
 
