@@ -27,7 +27,7 @@ const Contact = () => {
 
     if (res.success) {
       console.log("Success", res);
-      alert("Submitted successfully" );
+      alert("Submitted successfully");
     }
   };
 
@@ -40,7 +40,7 @@ const Contact = () => {
           <img src={txt1} alt="Contact Banner" />
           <img src={matrimandir} alt="Contact Banner" />
         </div>
-        
+
 
       </div>
 
@@ -70,7 +70,7 @@ const Contact = () => {
         <div className="contact-right">
           <form className="contact-form" onSubmit={onSubmit}>
             <label>Name</label>
-            <input type="text"  name="name" placeholder="Enter your name" required />
+            <input type="text" name="name" placeholder="Enter your name" required />
 
             <label>E-Mail</label>
             <input type="email" name="mail" placeholder="Enter your email" required />
@@ -82,13 +82,15 @@ const Contact = () => {
             <button type="submit">Send</button>
           </form>
           <div className="mail-id">
-            <p>tedxpondicherryuniversity@gmail.com</p>
+            <a href="mailto:tedxpondicherryuniversity@gmail.com?subject=TEDx%20Inquiry&body=Hello%2C%0D%0A">
+              tedxpondicherryuniversity@gmail.com
+            </a>
           </div>
         </div>
       </div>
 
       {/* Footer contact */}
-    
+
     </div>
   );
 };
