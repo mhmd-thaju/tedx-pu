@@ -93,7 +93,19 @@ const RegistrationModal = ({ isOpen, onClose }) => {
       const imlink = data.secure_url;
 
       // 2. Send all data + image link to Google Sheets
-      
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbwQ11GECwJ7y0Tva7YNbd-I5AqxAIcJrt6rrJ3l9FshsBElG8cwOHRGeRKuQIQKimvr/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ...formData,
+            ticketType: selectedCategory,
+            imageUrl: imlink,
+          }),
+        }
+      );
 
       alert("🎉 Welcome aboard!, We will be sending your ticket shortly, Kindly please check your Mail.");
       handleCloseAll();
