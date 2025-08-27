@@ -4,7 +4,7 @@ import "./Sponsors.css";
 
 function Sponsors() {
   return (
-    <div className="outer">
+    <div className="outer-s">
       <h1 className="sp-title">SPONSORS</h1>
       <hr />
 
