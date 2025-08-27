@@ -1,21 +1,14 @@
 import React from "react";
-
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedinIn,
-  FaWhatsapp,
-} from "react-icons/fa";
+import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 const iconStyle = {
-  color: "#bbb",
+  color: "#e62b1e", // TEDx Red
   fontSize: "1.75rem",
   transition: "transform 0.3s ease, color 0.3s ease",
 };
 
 const hoverStyle = {
-  color: "#fff",
+  color: "#fff", // Turns white on hover
   transform: "scale(1.2)",
 };
 
@@ -45,47 +38,48 @@ const Footer = () => {
   return (
     <>
       <style>{fadeInUpKeyframes}</style>
-      <footer
-        className="bg-black text-white py-5"
-        style={footerAnimation}
-      >
-        <div className="container">
-          <div className="row text-center text-md-start">
-            <div className="col-md-6 mb-4">
-              <h5 style={{ fontWeight: "bold" }}>Social</h5>
-              <div className="d-flex justify-content-center justify-content-md-start gap-4 mt-3">
-                
-                <span
-                  onMouseEnter={() => handleMouseEnter("instagram")}
-                  onMouseLeave={handleMouseLeave}
-                  style={hoveredIcon === "instagram" ? { ...iconStyle, ...hoverStyle } : iconStyle}
-                >
-                  <a href="https://www.instagram.com/tedx.pondicherryuniversity/"><FaInstagram /></a>
-                </span>
-                <span
-                  onMouseEnter={() => handleMouseEnter("linkedin")}
-                  onMouseLeave={handleMouseLeave}
-                  style={hoveredIcon === "linkedin" ? { ...iconStyle, ...hoverStyle } : iconStyle}
-                >
-                  <a href="http://www.linkedin.com/in/tedxpondicherryuniversity" style={{textDecoration:"none"}}><FaLinkedinIn /></a>
-                </span>
-              </div>
-            </div>
-
-            <div className="col-md-6 mb-4">
-              <h5 style={{ fontWeight: "bold" }}>Community</h5>
-              <div className="d-flex justify-content-center justify-content-md-start gap-4 mt-3">
-                <span
-                  onMouseEnter={() => handleMouseEnter("whatsapp")}
-                  onMouseLeave={handleMouseLeave}
-                  style={hoveredIcon === "whatsapp" ? { ...iconStyle, ...hoverStyle } : iconStyle}
-                >
-                  <FaWhatsapp />
-                </span>
-              </div>
-            </div>
+      <footer className="bg-black text-white py-5" style={footerAnimation}>
+        <div className="container text-center">
+          {/* Social Section */}
+          <h5 style={{ fontWeight: "bold" }}>Follow Us</h5>
+          <div className="d-flex justify-content-center gap-4 mt-3">
+            <span
+              onMouseEnter={() => handleMouseEnter("instagram")}
+              onMouseLeave={handleMouseLeave}
+              style={
+                hoveredIcon === "instagram"
+                  ? { ...iconStyle, ...hoverStyle }
+                  : iconStyle
+              }
+            >
+              <a
+                href="https://www.instagram.com/tedx.pondicherryuniversity/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaInstagram />
+              </a>
+            </span>
+            <span
+              onMouseEnter={() => handleMouseEnter("linkedin")}
+              onMouseLeave={handleMouseLeave}
+              style={
+                hoveredIcon === "linkedin"
+                  ? { ...iconStyle, ...hoverStyle }
+                  : iconStyle
+              }
+            >
+              <a
+                href="http://www.linkedin.com/in/tedxpondicherryuniversity"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaLinkedinIn />
+              </a>
+            </span>
           </div>
 
+          {/* Bottom Text */}
           <div className="text-center pt-3 mt-4 border-top border-secondary">
             <small>&copy; 2025 TEDx Pondicherry University</small>
           </div>
