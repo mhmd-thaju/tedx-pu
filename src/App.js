@@ -8,7 +8,7 @@ import Footer from './components/Footer';
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
-import Sponsors from "./pages/Sponsors.js";
+import Sponsors from "./pages/Sponsors.jsx";
 import Speakers from "./pages/Speakers.jsx";
 import ViewportManager from './components/ViewportManager.jsx';
 
