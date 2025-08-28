@@ -30,7 +30,7 @@ function About() {
         <section className="about-section about-tedx-pu">
           <h2 className="section-title">TEDx Pondicherry University</h2>
           <p className="section-description">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi odio numquam praesentium sit laborum magni, saepe, tempora similique, totam dolorem itaque accusamus! Aperiam perferendis architecto, reiciendis odio reprehenderit repudiandae dolorem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat eveniet excepturi a eius accusamus magnam adipisci suscipit pariatur neque. Officia, temporibus! Dolorum voluptate labore consectetur laborum. Est, sapiente omnis. Earum.
+            TEDxPondicherry University is more than an event. It is a stage for bold thinkers, creators, and change-makers to share ideas that have the power to shape the future. Curated by the students of Pondicherry University, our platform connects global vision with local voice, inspiring our community to think bigger, act bolder, and reimagine what is possible.
           </p>
         </section>
       </div>
