@@ -122,6 +122,7 @@ select:focus {
   margin-top: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
+  display: none;
 }
 
 .submit-btn:hover {

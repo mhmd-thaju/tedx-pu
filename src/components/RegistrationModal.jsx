@@ -182,7 +182,8 @@ const RegistrationModal = ({ isOpen, onClose }) => {
           <div className="modal-box animate-modal">
             <button className="modal-close" onClick={handleCloseAll}>×</button>
             <h2>{selectedCategory} Payment</h2>
-            <p>Pay ₹{amount} via UPI</p>
+            <p>Pay ₹{amount} via UPI <br />Please scan below given QR code to make payment</p>
+            
             <div className="qr-container">
               <QRCodeSVG value={upiUrli} size={150} className="img" style={{padding:'4px'}}/>
             </div>
@@ -191,7 +192,7 @@ const RegistrationModal = ({ isOpen, onClose }) => {
             </a>
             <hr />
             <div>
-              <h3>Upload Payment Screenshot</h3>
+              <h3>Upload Payment Proof</h3>
               <input type="file" onChange={handleImageChange} accept="image/*" className="imgb"/>
               <button onClick={handleFinalSubmit} className="imgb" disabled={loading || !image}>
                 {loading ? 'Submitting...' : 'Submit Registration'}
