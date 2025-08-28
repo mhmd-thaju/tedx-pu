@@ -22,7 +22,7 @@ const Navbar = () => {
       <div className="container-fluid" ref={navbarRef}>
         <Link to="/" className="navbar-brand d-flex flex-column">
           <div>
-            <span style={{ color: "red", fontWeight: "bold" }}>TED<sup>x</sup></span>Pondicherry University
+            <span style={{ color: "red" }}><strong>TED<sup>x</sup></strong></span><span style={{fontWeight:"normal"}}>Pondicherry University</span>
           </div>
           <small style={{ fontSize: "0.75rem", color: "white" }} className="small">
             x = independently organized TED event
