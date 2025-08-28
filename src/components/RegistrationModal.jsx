@@ -187,7 +187,7 @@ const RegistrationModal = ({ isOpen, onClose }) => {
             <div className="qr-container">
               <QRCodeSVG value={upiUrli} size={150} className="img" style={{padding:'4px'}}/>
             </div>
-            <a href={upiUrl} target="_blank" rel="noreferrer" className="submit-btn glow">
+            <a href={upiUrl} target="_blank" rel="noreferrer" className="submit-btnp glow">
               Pay via UPI App
             </a>
             <hr />
