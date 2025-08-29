@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./RegistrationModal.css";
-import { FaUserGraduate, FaUsers } from "react-icons/fa";
+import { FaUserGraduate, FaUsers, FaExclamationTriangle } from "react-icons/fa";
 import { QRCodeSVG } from 'qrcode.react';
 
 const RegistrationModal = ({ isOpen, onClose }) => {
@@ -58,7 +58,7 @@ const RegistrationModal = ({ isOpen, onClose }) => {
   const upiUrl = `upi://pay?pa=tedxpu@indianbk&pn=TEDxPU&am=${amount}&cu=INR&tn=${formData.name} Ticket`;
   const upiUrli = `upi://pay?pa=tedxpu@indianbk&pn=TEDxPU&am=${amount}&cu=INR&tn=${encodeURIComponent(formData.name)}%20Ticket`;
 
-  
+
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -177,8 +177,7 @@ const RegistrationModal = ({ isOpen, onClose }) => {
       )}
 
       {/* Third Modal */}
-      {selectedCategory && (
-        <div className="modal-overlay">
+      {selectedCategory && (<div className="modal-overlay">
           <div className="modal-box animate-modal">
             <button className="modal-close" onClick={handleCloseAll}>×</button>
             <h2>{selectedCategory} Payment</h2>
@@ -203,10 +202,23 @@ const RegistrationModal = ({ isOpen, onClose }) => {
               <p>For queries : info.tedxpu@gmail.com</p>
             </div>
           </div>
-        </div>
+        </div>     
       )}
     </>
   );
 };
 
 export default RegistrationModal;
+
+/*
+<div className="modal-overlay">
+          <div className="modal-box animate-modal">
+            <button className="modal-close" onClick={handleCloseAll}>×</button>
+            <FaExclamationTriangle size={40} color="red" />
+
+            <h2>Oops! Registraion has been closed !!</h2>
+            <hr />
+            <p>For queries : info.tedxpu@gmail.com</p>
+          </div>
+        </div>
+        */
