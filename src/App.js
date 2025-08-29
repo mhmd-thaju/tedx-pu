@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-
+import { useEffect } from "react";   // 👈 import useEffect
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -25,13 +25,14 @@ function MainLayout() {
   const location = useLocation();
   const showHome = location.pathname === '/' || location.pathname === '/home';
 
+  // 👇 Scroll to top on every route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <div className="App d-flex flex-column min-vh-100" style={{ backgroundColor: "#000" }}>
       <Navbar />
-      
-
-      {/* Show Home only for "/" or "/home" */}
-      {/*showHome && <Home />*/}
 
       {/* Routes Section */}
       <div className="main flex-grow-1">
