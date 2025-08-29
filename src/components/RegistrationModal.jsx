@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import "./RegistrationModal.css";
 import { FaUserGraduate, FaUsers, FaExclamationTriangle } from "react-icons/fa";
 import { QRCodeSVG } from 'qrcode.react';
@@ -11,7 +11,51 @@ const RegistrationModal = ({ isOpen, onClose }) => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [rowCount, setRowCount] = useState(null);
 
+  useEffect(() => {
+  let interval;
+
+  const fetchRowCount = async () => {
+    try {
+      const res = await fetch(
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPNz0h-zl1fJAwxKoSc-y4tOCThSTYPzOGEIK1__a6oiUnS-IZJTNTWjduktyJQ4ygogaP9CWX4B5i/pub?gid=0&single=true&output=csv"
+      );
+      const text = await res.text();
+
+      const rows = text.trim().split("\n");
+      const count = rows.length - 1; // skip header row
+      setRowCount(count);
+      //console.log("Fetched row count:", count);
+
+      // ✅ Stop checking if >= 100
+      if (count >= 100 && interval) {
+        clearInterval(interval);
+        //console.log("Row limit reached. Stopped polling.");
+      }
+    } catch (err) {
+      console.error("Error fetching row count:", err);
+    }
+  };
+
+  // Fetch immediately once
+  fetchRowCount();
+
+  // Keep checking every 5 sec
+  interval = setInterval(fetchRowCount, 5000);
+
+  // Cleanup on unmount
+  return () => clearInterval(interval);
+}, []);
+
+
+// Watch for state update
+useEffect(() => {
+  if (rowCount !== null) {
+    //console.log("Row count updated in state:", rowCount);
+  }
+}, [rowCount]);
+  
   if (!isOpen) return null;
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -177,33 +221,74 @@ const RegistrationModal = ({ isOpen, onClose }) => {
       )}
 
       {/* Third Modal */}
-      {selectedCategory && (<div className="modal-overlay">
-          <div className="modal-box animate-modal">
-            <button className="modal-close" onClick={handleCloseAll}>×</button>
+      {selectedCategory && (
+  <div className="modal-overlay">
+    <div className="modal-box animate-modal">
+      <button className="modal-close" onClick={handleCloseAll}>×</button>
+
+      {/* Show based on rowCount */}
+      {rowCount !== null ? (
+        rowCount < 100 ? (
+          <>
             <h2>{selectedCategory} Payment</h2>
-            <p>Pay ₹{amount} via UPI <br />Please scan below given QR code to make payment</p>
-            
+            <p>
+              Pay ₹{amount} via UPI <br />
+              Please scan below given QR code to make payment
+            </p>
+
             <div className="qr-container">
-              <QRCodeSVG value={upiUrli} size={150} className="img" style={{padding:'4px'}}/>
+              <QRCodeSVG
+                value={upiUrli}
+                size={150}
+                className="img"
+                style={{ padding: "4px" }}
+              />
             </div>
-            <a href={upiUrl} target="_blank" rel="noreferrer" className="submit-btnp glow">
+            <a
+              href={upiUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="submit-btnp glow"
+            >
               Pay via UPI App
             </a>
+
             <hr />
             <div>
               <h3>Upload Payment Proof</h3>
-              <input type="file" onChange={handleImageChange} accept="image/*" className="imgb"/>
-              <button onClick={handleFinalSubmit} className="imgb" disabled={loading || !image}>
-                {loading ? 'Submitting...' : 'Submit Registration'}
+              <input
+                type="file"
+                onChange={handleImageChange}
+                accept="image/*"
+                className="imgb"
+              />
+              <button
+                onClick={handleFinalSubmit}
+                className="imgb"
+                disabled={loading || !image}
+              >
+                {loading ? "Submitting..." : "Submit Registration"}
               </button>
             </div>
             <hr />
             <div>
               <p>For queries : info.tedxpu@gmail.com</p>
             </div>
-          </div>
-        </div>     
+          </>
+        ) : (
+          <>
+            <FaExclamationTriangle size={40} color="red" />
+            <h2>Oops! Registration has been closed !!</h2>
+            <hr />
+            <p>For queries : info.tedxpu@gmail.com</p>
+          </>
+        )
+      ) : (
+        <p>Loading...</p> // show while rowCount is still null
       )}
+    </div>
+  </div>
+)}
     </>
   );
 };
